@@ -61,10 +61,7 @@ public class PlayerContoller : MonoBehaviour
     
     private void ModelChange()
     {
-        
-        
-        
-        
+
         if(Input.GetKeyDown(KeyCode.Space) && _standing)
         {
             standingModel.SetActive(false);
