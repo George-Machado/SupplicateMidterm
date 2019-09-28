@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,6 +21,10 @@ public class PlayerContoller : MonoBehaviour
 
     public GameObject standingModel;
 
+    private bool _standing = true;
+
+    private bool _enterTrigger;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +35,11 @@ public class PlayerContoller : MonoBehaviour
     private void Update()
     {
         Movement();
-        ModelChange();
+
+        if (_enterTrigger);
+        {
+            ModelChange();
+        }
     }
 
     private void Movement()
@@ -43,18 +52,46 @@ public class PlayerContoller : MonoBehaviour
         _pInput += vertical * transform.forward;
     }
 
-    private void ModelChange()
-    {
-        if(Input.GetKey(KeyCode.Space))
-        {
-            standingModel.SetActive(false);
-        }
-    }
-
     private void FixedUpdate()
     {
 
         _rb.velocity = _pInput * speed;
         
+    }
+    
+    private void ModelChange()
+    {
+        
+        
+        
+        
+        if(Input.GetKeyDown(KeyCode.Space) && _standing)
+        {
+            standingModel.SetActive(false);
+            kneeling.SetActive(true);
+            _standing = false;
+        }
+        else if (_standing == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                standingModel.SetActive(true);
+                kneeling.SetActive(false);
+                _standing = true;
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        _enterTrigger = true;
+        Debug.Log("enter");
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        _enterTrigger = false;
+        Debug.Log("exit");
     }
 }

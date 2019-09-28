@@ -27,7 +27,7 @@ public class RotateHover : MonoBehaviour
     void Update()
     {
     //rotate profile around Y axis
-      transform.Rotate(new Vector3(0f,5f,0)*Time.deltaTime);
+      transform.Rotate(new Vector3(0f,hoverSpeed,0)*Time.deltaTime);
       float y = transform.position.y;
       if (moveUp)
       {
