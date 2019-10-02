@@ -21,7 +21,9 @@ public class PlayerContoller : MonoBehaviour
 
     public GameObject standingModel;
 
-    private bool _standing = true;
+    public float emotionalEnergy = 100f;
+
+    public bool standing = true;
 
     private bool _enterTrigger;
 
@@ -36,7 +38,7 @@ public class PlayerContoller : MonoBehaviour
     {
         Movement();
 
-        if (_enterTrigger);
+        if (_enterTrigger)
         {
             ModelChange();
         }
@@ -61,34 +63,44 @@ public class PlayerContoller : MonoBehaviour
     
     private void ModelChange()
     {
-
-        if(Input.GetKeyDown(KeyCode.Space) && _standing)
+        if(Input.GetKeyDown(KeyCode.Space) && standing)
         {
             standingModel.SetActive(false);
             kneeling.SetActive(true);
-            _standing = false;
+            standing = false;
+            Debug.Log("standing is flase");
         }
-        else if (_standing == false)
+        else if (standing == false)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 standingModel.SetActive(true);
                 kneeling.SetActive(false);
-                _standing = true;
+                standing = true;
             }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        _enterTrigger = true;
-        Debug.Log("enter");
+        if (other.gameObject.CompareTag("TwitterProfile"))
+        {
+            _enterTrigger = true;
+            //Debug.Log("enter");
+        }
+    }
 
+    public bool isKneeling()
+    {
+        return !standing;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _enterTrigger = false;
-        Debug.Log("exit");
+        if (other.gameObject.CompareTag("TwitterProfile"))
+        {
+            _enterTrigger = false;
+            //Debug.Log("exit");
+        }
     }
 }

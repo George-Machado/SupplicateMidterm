@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public static GameController instance;
 
-    private float _begTime;
-    
-    
-    
+    public BegTime[] begTimes;
+
+    private float _totalBegTime; 
     // Start is called before the first frame update
     void Start()
     {
-        
-        instance = this;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
     }
 
     // Update is called once per frame
@@ -22,4 +21,14 @@ public class GameController : MonoBehaviour
     {
         
     }
+
+    public void TotalBegTime()
+    {
+        for (int i = 0; i < begTimes.Length ; i++)
+        {
+            
+        }
+
+    }
+
 }
