@@ -5,9 +5,9 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
-    public BegTime[] begTimes;
+    public GameObject money;
 
-    private float _totalBegTime; 
+    public float totalBegTime; 
     // Start is called before the first frame update
     void Start()
     {
@@ -19,16 +19,18 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
-    public void TotalBegTime()
+    void WinState()
     {
-        for (int i = 0; i < begTimes.Length ; i++)
+        if (totalBegTime > 350f)
         {
+            //Instantiate()
             
+            Debug.Log("win");
         }
-
     }
+    
 
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -61,9 +62,36 @@ public class Enemy : MonoBehaviour
 
     private void MoveToTarget()
     {
-        transform.LookAt(_currentTarget);
+        Ray ray = new Ray(transform.position, transform.forward);
 
-        transform.position += transform.forward * speed;
+        float rayDist = 2f;
+        
+        Debug.DrawRay(ray.origin, ray.direction * rayDist, Color.cyan);
+
+
+        if (Physics.Raycast(ray, rayDist))
+        {
+            float turnChance = Random.Range(0f, 100f);
+
+            if (turnChance > 50f)
+            {
+                transform.Rotate(0f,-90f,0f);
+                
+            }
+            else 
+            {
+                transform.Rotate(0f,90f,0f);
+            }
+        }
+        else
+        {
+            transform.LookAt(_currentTarget);
+
+            transform.position += transform.forward * speed;
+        }
+
+
+       
         
         
     }
