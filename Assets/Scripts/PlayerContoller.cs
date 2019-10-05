@@ -90,7 +90,7 @@ public class PlayerContoller : MonoBehaviour
         }
     }
 
-    public bool isKneeling()
+    public bool IsKneeling()
     {
         return !standing;
     }

@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_playerInRange && player.isKneeling())
+        if (_playerInRange && player.IsKneeling())
         {
              FollowPlayer();
         }
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, transform.forward);
 
-        float rayDist = 2f;
+        float rayDist = 4f;
         
         Debug.DrawRay(ray.origin, ray.direction * rayDist, Color.cyan);
 

@@ -24,7 +24,7 @@ public class BegTime : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (player.isKneeling())
+        if (player.IsKneeling())
         {
             begTime += 1f * Time.deltaTime;
 
