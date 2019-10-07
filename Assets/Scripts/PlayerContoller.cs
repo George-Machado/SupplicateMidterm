@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 //USAGE: put this on your player
@@ -23,24 +24,44 @@ public class PlayerContoller : MonoBehaviour
 
     public float emotionalEnergy = 100f;
 
+    public float maxEmotionalEnergy = 100f;
+
     public bool standing = true;
 
     private bool _enterTrigger;
+
+    public bool boomerInRange;
+
+    public Image energyBar;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        
+
     }
 
     private void Update()
     {
-        Movement();
+       
+        
+            Movement();
+        
 
         if (_enterTrigger)
         {
             ModelChange();
+        }
+
+        if (boomerInRange == false)
+        {
+            emotionalEnergy += 1f * Time.deltaTime;
+            
+            energyBar.fillAmount = emotionalEnergy/maxEmotionalEnergy;
+            if (emotionalEnergy > maxEmotionalEnergy)
+            {
+                emotionalEnergy = maxEmotionalEnergy;
+            }
         }
     }
 
@@ -88,6 +109,19 @@ public class PlayerContoller : MonoBehaviour
             _enterTrigger = true;
             //Debug.Log("enter");
         }
+
+        if (other.gameObject.CompareTag("Boomer") && IsKneeling())
+        {
+            boomerInRange = true;
+            emotionalEnergy -= 1f * Time.deltaTime;
+            if (emotionalEnergy < 0)
+            {
+                emotionalEnergy = 0;
+            }
+            energyBar.fillAmount = emotionalEnergy/maxEmotionalEnergy;
+            
+        }
+        
     }
 
     public bool IsKneeling()
@@ -101,6 +135,12 @@ public class PlayerContoller : MonoBehaviour
         {
             _enterTrigger = false;
             //Debug.Log("exit");
+        }
+        
+        if (other.gameObject.CompareTag("Boomer") && standing)
+        {
+            boomerInRange = false;
+
         }
     }
 }

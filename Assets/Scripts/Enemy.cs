@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -24,6 +25,8 @@ public class Enemy : MonoBehaviour
     public float minTime = 3;
 
     public float maxTime = 7;
+
+    public TextMeshPro[] tweet;
     
     
     // Start is called before the first frame update
@@ -58,6 +61,8 @@ public class Enemy : MonoBehaviour
         timeForNextChoice = Random.Range(minTime, maxTime);
         
         Invoke("PickTarget", timeForNextChoice);
+        
+        transform.LookAt(_currentTarget);
     }
 
     private void MoveToTarget()
@@ -76,23 +81,21 @@ public class Enemy : MonoBehaviour
             if (turnChance > 50f)
             {
                 transform.Rotate(0f,-90f,0f);
-                
+                 
+               // transform.position += transform.forward * speed;
             }
             else 
             {
                 transform.Rotate(0f,90f,0f);
+                //transform.position += transform.forward * speed;
             }
         }
         else
         {
-            transform.LookAt(_currentTarget);
+            
 
             transform.position += transform.forward * speed;
         }
-
-
-       
-        
         
     }
     
@@ -108,8 +111,6 @@ public class Enemy : MonoBehaviour
 
     private void FollowPlayer()
     {
-        
-        
         transform.LookAt(player.transform);
 
         transform.position += transform.forward * speed;
@@ -119,5 +120,13 @@ public class Enemy : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         _playerInRange = false;
+    }
+
+    void Tweet()
+    {
+        if (_playerInRange)
+        {
+            
+        }
     }
 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8860061992165086705}
   m_Layer: 0
   m_Name: Boomer
-  m_TagString: Untagged
+  m_TagString: Boomer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,6 +120,7 @@ MonoBehaviour:
   - {fileID: 0}
   minTime: 3
   maxTime: 7
+  tweet: {fileID: 0}
 --- !u!135 &8860061992165086705
 SphereCollider:
   m_ObjectHideFlags: 0
