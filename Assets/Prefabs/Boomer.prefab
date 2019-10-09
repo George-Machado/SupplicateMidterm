@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  gameController: {fileID: 0}
   speed: 0.3
   moveTarget:
   - {fileID: 0}
@@ -120,7 +121,18 @@ MonoBehaviour:
   - {fileID: 0}
   minTime: 3
   maxTime: 7
-  tweet: {fileID: 0}
+  tweets:
+  - d
+  - fdgfdg
+  - sg
+  - fgdsf
+  - fdg
+  - fgdfg
+  - dfgds
+  - gdggdf
+  - gdgs
+  - fgdg
+  - gd
 --- !u!135 &8860061992165086705
 SphereCollider:
   m_ObjectHideFlags: 0

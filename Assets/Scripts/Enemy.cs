@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 
 //USAGE: Put on Enemy
@@ -13,7 +13,7 @@ using Random = UnityEngine.Random;
 public class Enemy : MonoBehaviour
 {
     public PlayerContoller player;
-
+    public GameController gameController;
     public float speed;
 
     private bool _playerInRange;
@@ -25,8 +25,8 @@ public class Enemy : MonoBehaviour
     public float minTime = 3;
 
     public float maxTime = 7;
-
-    public TextMeshPro[] tweet;
+    
+    public string[] tweets;
     
     
     // Start is called before the first frame update
@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
             MoveToTarget();
         }
         
+        Tweet();
     }
 
 
@@ -124,9 +125,25 @@ public class Enemy : MonoBehaviour
 
     void Tweet()
     {
-        if (_playerInRange)
+        
+        if (_playerInRange && player.IsKneeling())
         {
-            
+            StartCoroutine(Tweets());
+        }
+        else if (!_playerInRange)
+        {
+            StopCoroutine(Tweets());
+        }
+    }
+
+    IEnumerator Tweets()
+    {
+
+        for (int i = 0; i < gameController.tweet.Length; i++) 
+        {
+               
+            gameController.tweet[i].text = tweets[i];
+            yield return new WaitForSeconds(1);
         }
     }
 }
