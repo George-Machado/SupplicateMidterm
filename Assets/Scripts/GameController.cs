@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -29,6 +30,13 @@ public class GameController : MonoBehaviour
         SpawnBoomers(); 
 
     }
+    void Update()
+    {
+        Winstate();
+        
+        FailState();
+    }
+
 
     void SpawnBoomers()
     {
@@ -44,20 +52,15 @@ public class GameController : MonoBehaviour
             {
                 g.GetComponent<Enemy>().moveTarget[j] = moveTargets[j];
             }
-            
+
         }
+    }
 
-        // Update is called once per frame
-        void Update()
+
+
+    void Winstate()
         {
-            WinState();
-
-            FailState();
-        }
-
-        void WinState()
-        {
-            if (totalBegTime > 350f)
+            if (totalBegTime > 100f)
             {
                 //Instantiate()
 
@@ -76,4 +79,4 @@ public class GameController : MonoBehaviour
 
     }
 
-}
+

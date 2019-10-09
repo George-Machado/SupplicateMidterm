@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
         {
              FollowPlayer();
         }
-        else
+        else 
         {
             MoveToTarget();
         }
@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, transform.forward);
 
-        float rayDist = 4f;
+        float rayDist = 7f;
         
         Debug.DrawRay(ray.origin, ray.direction * rayDist, Color.cyan);
 
@@ -94,7 +94,6 @@ public class Enemy : MonoBehaviour
         else
         {
             
-
             transform.position += transform.forward * speed;
         }
         
@@ -114,7 +113,12 @@ public class Enemy : MonoBehaviour
     {
         transform.LookAt(player.transform);
 
-        transform.position += transform.forward * speed;
+    
+        
+        if (Vector3.Distance(transform.position, player.transform.position) > 15f)
+        {
+            transform.position += transform.forward * speed;
+        }
         
     }
 
@@ -128,20 +132,18 @@ public class Enemy : MonoBehaviour
         
         if (_playerInRange && player.IsKneeling())
         {
-            StartCoroutine(Tweets());
+            StartCoroutine("Tweets");
         }
-        else if (!_playerInRange)
+        else if (_playerInRange==false && player.standing)
         {
-            StopCoroutine(Tweets());
+            StopCoroutine("Tweets");
         }
     }
 
     IEnumerator Tweets()
     {
-
         for (int i = 0; i < gameController.tweet.Length; i++) 
         {
-               
             gameController.tweet[i].text = tweets[i];
             yield return new WaitForSeconds(1);
         }

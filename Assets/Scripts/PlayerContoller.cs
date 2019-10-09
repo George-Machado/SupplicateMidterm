@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,10 +44,17 @@ public class PlayerContoller : MonoBehaviour
 
     private void Update()
     {
-       
-        
+
+        if (standing)
+        {
             Movement();
-        
+
+            if (IsKneeling())
+            {
+                _rb.velocity = _pInput;
+            }
+        }
+
 
         if (_enterTrigger)
         {
