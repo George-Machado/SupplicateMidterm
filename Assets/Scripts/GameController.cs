@@ -44,33 +44,24 @@ public class GameController : MonoBehaviour
     void SpawnBoomers()
     {
         List<Transform> usedSpawnTargets = new List<Transform>();
-
-
-
         for (int i = 0; i < 50; i++)
         {
             bool canSpawn = false;
 
             Transform spawnTarget = spawnTargets[Random.Range(0, spawnTargets.Length)];
-
-
+            
             while (canSpawn == false)
             {
                 if (usedSpawnTargets.Contains(spawnTarget))
                 {
-                    spawnTarget.position += new Vector3(Random.Range(-6,6),0, Random.Range(-6,6));
+                    spawnTarget.position += new Vector3(Random.Range(-3,6),0, Random.Range(-3,3));
                 }
                 else
                 {
                     canSpawn = true;
                 }
-                    
-                
             }
             
-
-
-
             GameObject g = Instantiate(boomer, spawnTarget);
             g.GetComponent<Enemy>().player = playerInScene.GetComponent<PlayerContoller>();
             g.GetComponent<Enemy>().gameController = this;
@@ -80,7 +71,6 @@ public class GameController : MonoBehaviour
             {
                 g.GetComponent<Enemy>().moveTarget[j] = moveTargets[j];
             }
-            
         }
     }
 
@@ -110,12 +100,9 @@ public class GameController : MonoBehaviour
                 {
                     SceneManager.LoadScene("StartScreen");
                 }
-
                 Debug.Log("Game over");
             }
-
         }
-
-    }
+}
 
 

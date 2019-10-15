@@ -77,9 +77,8 @@ public class Enemy : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
 
         float rayDist = 7f;
-        
-        Debug.DrawRay(ray.origin, ray.direction * rayDist, Color.cyan);
 
+        Debug.DrawRay(ray.origin, ray.direction * rayDist, Color.cyan);
 
         if (Physics.Raycast(ray, rayDist))
         {
@@ -118,8 +117,6 @@ public class Enemy : MonoBehaviour
     private void FollowPlayer()
     {
         transform.LookAt(player.transform);
-
-    
         
         if (Vector3.Distance(transform.position, player.transform.position) > 15f)
         {

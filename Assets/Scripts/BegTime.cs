@@ -15,12 +15,7 @@ public class BegTime : MonoBehaviour
     {
       _GM =  GameObject.Find("GamaGOD").GetComponent<GameController>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     private void OnTriggerStay(Collider other)
     {

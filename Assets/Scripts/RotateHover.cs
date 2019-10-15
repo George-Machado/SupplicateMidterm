@@ -14,34 +14,29 @@ public class RotateHover : MonoBehaviour
 
     private Vector3 yPosition;
 
-    private bool moveUp = true;
-    // Start is called before the first frame update
-  
+    private bool _moveUp = true;
     
- 
-
     // Update is called once per frame
     void Update()
     {
     //rotate profile around Y axis
       transform.Rotate(new Vector3(0f,hoverSpeed,0)*Time.deltaTime);
       float y = transform.position.y;
-      if (moveUp)
+      if (_moveUp)
       {
           transform.Translate(new Vector3(0f, 1f, 0f)*Time.deltaTime);
           if (y > maxHeight)
           {
-              moveUp = false;
+              _moveUp = false;
           }
       }
       else
       {
           transform.Translate(new Vector3(0,-1f,0) *Time.deltaTime);
           if (y < minHeight)
-          {
-              moveUp = true;
+          { _moveUp = true;
           }
       }
-
+    
     }
 }
