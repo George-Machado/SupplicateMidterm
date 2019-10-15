@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -15,13 +16,15 @@ public class GameController : MonoBehaviour
     public GameObject playerInScene;
     public float totalBegTime;
     
+    
+    
 
     public GameObject boomer;
 
     public Transform[] spawnTargets;
     public Transform[] moveTargets;// Start is called before the first frame update
     public TextMeshProUGUI[] tweet;
-    
+    public TextMeshProUGUI gameOver; 
     
     void Start()
     {
@@ -40,10 +43,35 @@ public class GameController : MonoBehaviour
 
     void SpawnBoomers()
     {
+        List<Transform> usedSpawnTargets = new List<Transform>();
+
+
 
         for (int i = 0; i < 50; i++)
         {
-            GameObject g = Instantiate(boomer, spawnTargets[Random.Range(0, spawnTargets.Length)]);
+            bool canSpawn = false;
+
+            Transform spawnTarget = spawnTargets[Random.Range(0, spawnTargets.Length)];
+
+
+            while (canSpawn == false)
+            {
+                if (usedSpawnTargets.Contains(spawnTarget))
+                {
+                    spawnTarget.position += new Vector3(Random.Range(-6,6),0, Random.Range(-6,6));
+                }
+                else
+                {
+                    canSpawn = true;
+                }
+                    
+                
+            }
+            
+
+
+
+            GameObject g = Instantiate(boomer, spawnTarget);
             g.GetComponent<Enemy>().player = playerInScene.GetComponent<PlayerContoller>();
             g.GetComponent<Enemy>().gameController = this;
 
@@ -52,7 +80,7 @@ public class GameController : MonoBehaviour
             {
                 g.GetComponent<Enemy>().moveTarget[j] = moveTargets[j];
             }
-
+            
         }
     }
 
@@ -62,7 +90,12 @@ public class GameController : MonoBehaviour
         {
             if (totalBegTime > 100f)
             {
-                //Instantiate()
+                gameOver.text = "You win! press R to restart";
+
+                if (Input.GetKey(KeyCode.R))
+                {
+                    SceneManager.LoadScene("StartScreen");
+                }
 
                 Debug.Log("win");
             }
@@ -72,6 +105,12 @@ public class GameController : MonoBehaviour
         {
             if (player.emotionalEnergy <= 0f)
             {
+                gameOver.text = "you lose!  press R to restart";
+                if (Input.GetKey(KeyCode.R))
+                {
+                    SceneManager.LoadScene("StartScreen");
+                }
+
                 Debug.Log("Game over");
             }
 

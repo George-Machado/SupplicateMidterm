@@ -14,10 +14,16 @@ public class SceneChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("Test Build");
         }
+        
 
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Test Build");
     }
 }

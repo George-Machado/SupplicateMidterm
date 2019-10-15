@@ -18,7 +18,7 @@ public class MouseLook : MonoBehaviour
           verticalAngle -= mouseY * 5f;
           verticalAngle = Mathf.Clamp(verticalAngle, -80f, 80f);
           
-          transform.localEulerAngles = new Vector3(verticalAngle,transform.localEulerAngles.x,0f);
+          transform.localEulerAngles = new Vector3(verticalAngle,transform.localEulerAngles.y,0f);
           
   
       }

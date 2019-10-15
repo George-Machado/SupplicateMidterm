@@ -38,6 +38,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       transform.position = new Vector3(transform.position.x,4f,transform.position.z);
+       
+       transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0f);
+       
+       
+        
         if (_playerInRange && player.IsKneeling())
         {
              FollowPlayer();
