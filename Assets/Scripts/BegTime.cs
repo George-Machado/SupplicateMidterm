@@ -24,6 +24,7 @@ public class BegTime : MonoBehaviour
             begTime += 1f * Time.deltaTime;
 
             _GM.totalBegTime += 1f * Time.deltaTime;
+            
 
 
         }

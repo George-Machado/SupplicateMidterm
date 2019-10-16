@@ -77,7 +77,8 @@ public class GameController : MonoBehaviour
 
 
     void Winstate()
-        {
+    {
+        Debug.Log(totalBegTime);
             if (totalBegTime > 100f)
             {
                 gameOver.text = "You win! press R to restart";
@@ -89,13 +90,14 @@ public class GameController : MonoBehaviour
 
                 Debug.Log("win");
             }
-        }
+    }
 
         void FailState()
         {
             if (player.emotionalEnergy <= 0f)
             {
                 gameOver.text = "you lose!  press R to restart";
+                
                 if (Input.GetKey(KeyCode.R))
                 {
                     SceneManager.LoadScene("StartScreen");

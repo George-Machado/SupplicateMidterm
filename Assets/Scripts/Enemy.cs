@@ -22,9 +22,9 @@ public class Enemy : MonoBehaviour
 
     private Transform _currentTarget;
 
-    public float minTime = 3;
+    public float minTime = 5;
 
-    public float maxTime = 7;
+    public float maxTime = 10;
     
     public string[] tweets;
     
