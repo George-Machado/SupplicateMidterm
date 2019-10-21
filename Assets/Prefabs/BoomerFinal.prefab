@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3990005646475708511}
   m_Layer: 0
   m_Name: BoomerFinal
-  m_TagString: Untagged
+  m_TagString: Boomer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,11 +114,11 @@ MonoBehaviour:
   - This generation is so entitled
   - Here's my advice
   - Millenials :/
-  - 
-  - gdggdf
-  - gdgs
-  - fgdg
-  - gd
+  - It's those avocados
+  - Have you tried scholarships?
+  - Ridiculoas
+  - Kids these days
+  - Get a job
 --- !u!135 &3990005646475708511
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -130,5 +130,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 7.34
+  m_Radius: 11.9
   m_Center: {x: 0.02, y: 0, z: 0}

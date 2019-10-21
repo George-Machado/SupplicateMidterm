@@ -42,6 +42,11 @@ public class GameController : MonoBehaviour
         }
 
         FailState();
+        
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene("StartScreen");
+        }
     }
 
 
@@ -58,7 +63,7 @@ public class GameController : MonoBehaviour
             {
                 if (usedSpawnTargets.Contains(spawnTarget))
                 {
-                    spawnTarget.position += new Vector3(Random.Range(-3,6),0, Random.Range(-3,3));
+                    spawnTarget.position += new Vector3(Random.Range(-3,3),0, Random.Range(-3,3));
                 }
                 else
                 {
@@ -87,10 +92,7 @@ public class GameController : MonoBehaviour
         {
             gameOver.text = "You win! press R to restart";
 
-            if (Input.GetKey(KeyCode.R))
-            {
-                SceneManager.LoadScene("StartScreen");
-            }
+          
 
             Debug.Log("win");
 
