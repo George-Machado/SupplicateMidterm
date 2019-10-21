@@ -24,7 +24,8 @@ public class GameController : MonoBehaviour
     public Transform[] spawnTargets;
     public Transform[] moveTargets;// Start is called before the first frame update
     public TextMeshProUGUI[] tweet;
-    public TextMeshProUGUI gameOver; 
+    public TextMeshProUGUI gameOver;
+    private bool _hasWon= false;
     
     void Start()
     {
@@ -35,8 +36,11 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
-        Winstate();
-        
+        if (_hasWon == false)
+        {
+            Winstate();
+        }
+
         FailState();
     }
 
@@ -79,22 +83,41 @@ public class GameController : MonoBehaviour
     void Winstate()
     {
         Debug.Log(totalBegTime);
-            if (totalBegTime > 100f)
+        if (totalBegTime >= 60f)
+        {
+            gameOver.text = "You win! press R to restart";
+
+            if (Input.GetKey(KeyCode.R))
             {
-                gameOver.text = "You win! press R to restart";
-
-                if (Input.GetKey(KeyCode.R))
-                {
-                    SceneManager.LoadScene("StartScreen");
-                }
-
-                Debug.Log("win");
+                SceneManager.LoadScene("StartScreen");
             }
+
+            Debug.Log("win");
+
+            _hasWon = true;
+            SpawnMoney();
+        }
+
     }
 
-        void FailState()
+    private void SpawnMoney()
+    {
+        float playerX = playerInScene.transform.position.x;
+        float playerY = playerInScene.transform.position.y + 30f;
+        float playerZ = playerInScene.transform.position.z;
+
+
+        for (int i = 0; i < 100; i++)
         {
-            if (player.emotionalEnergy <= 0f)
+            Instantiate(money, new Vector3(playerX, playerY, playerZ), playerInScene.transform.rotation);
+            
+        }
+        
+    }
+
+    void FailState()
+        {
+            if (player.energyBar.fillAmount <= 0f)
             {
                 gameOver.text = "you lose!  press R to restart";
                 

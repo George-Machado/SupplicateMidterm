@@ -47,12 +47,10 @@ public class PlayerContoller : MonoBehaviour
         if (standing)
         {
             Movement();
-            if (IsKneeling())
-            {
-                _rb.velocity = _pInput;
-            }
-        }
+
+        } 
         
+       
         if (_enterTrigger)
         {
             ModelChange();
@@ -60,7 +58,7 @@ public class PlayerContoller : MonoBehaviour
         
         if (boomerInRange == false)
         {
-            emotionalEnergy += 1f * Time.deltaTime;
+            emotionalEnergy += 2f * Time.deltaTime;
             
             energyBar.fillAmount = emotionalEnergy/maxEmotionalEnergy;
             
@@ -85,6 +83,12 @@ public class PlayerContoller : MonoBehaviour
     {
 
         _rb.velocity = _pInput * speed;
+        if (IsKneeling()) 
+        {
+            _rb.velocity = new Vector3(0f,0f,0f );
+        }
+
+         
         
     }
     

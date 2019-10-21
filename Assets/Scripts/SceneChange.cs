@@ -8,7 +8,7 @@ public class SceneChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -18,12 +18,22 @@ public class SceneChange : MonoBehaviour
         {
             SceneManager.LoadScene("Test Build");
         }
-        
+
 
     }
 
     public void StartGame()
     {
         SceneManager.LoadScene("Test Build");
+    }
+
+    public void HowToScreen()
+    {
+        SceneManager.LoadScene("InstructionPage");
+    }
+
+    public void StartScreen()
+    {
+        SceneManager.LoadScene("StartScreen");
     }
 }
